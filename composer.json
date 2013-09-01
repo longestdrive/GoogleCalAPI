@@ -1,8 +1,6 @@
 {
     "name": "longestdrive/googlecal",
-    "description": "My attempt to implement the google calendar API into laravel. 
-    This is work in progress. Built mainly to provide functionality for another project
-    so development of this is secondary.",
+    "description": "My attempt to implement the google calendar API into laravel. This is work in progress. Built mainly to provide functionality for another project so development of this is secondary.",
     "authors": [
         {
             "name": "Ray Crane",
