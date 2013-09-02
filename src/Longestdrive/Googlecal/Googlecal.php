@@ -72,6 +72,7 @@ class Googlecal {
 
 		$event = new \Google_Event;
 		$event->setSummary($summary);
+		$event->setDescription($description);
 		//$event->setLocation('Somewhere');
 		$start = new \Google_EventDateTime;
 		$start->setDateTime($startDate);
