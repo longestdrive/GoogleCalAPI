@@ -85,6 +85,48 @@ class Googlecal {
 
 	}
 
+	/**
+	 * Update a google calendar event 
+	 * @param  string $calendarId  [unique id of calendar containing event]
+	 * @param  string $eventId     [unique id of event to update]
+	 * @param  string $startDate   [format YYYY-MM-DDTHH:MM:SSz]
+	 * @param  string $endDate     [format YYYY-MM-DDTHH:MM:SSz]
+	 * @param  string $summary     [event summary]
+	 * @param  string $description [event description]
+	 * @return object              [update event object]
+	 */
+	function calUpdateEvent($calendarId = 'primary', $eventId, $startDate, $endDate, $summary, $description = null) {
+
+		$event = $this->service->events->get($calendarId, $eventId);
+
+		$event->setSummary($summary);
+		$event->setDescription($description);
+		//$event->setLocation('Somewhere');
+		$start = new \Google_EventDateTime;
+		$start->setDateTime($startDate);
+		$event->setStart($start);
+		$end = new \Google_EventDateTime;
+		$end->setDateTime($endDate);
+		$event->setEnd($end);
+
+		return $this->service->events->update($calendarId, $event);
+
+	}
+
+	/**
+	 * Deletes the calender event
+	 * @param  string $calendarId [unique id of the calendar containing the event]
+	 * @param  string $eventId    [unique id of the event to delete]
+	 * @return boolean             [true = deleted, false = error]
+	 */
+	function calDeleteEvent($calendarId = 'primary', $eventId) {
+
+		//delete event
+
+		return $event = $this->service->events->delete($calendarId, $eventId);
+
+	}
+
 
 
 
