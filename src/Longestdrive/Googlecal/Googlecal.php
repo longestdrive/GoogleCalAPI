@@ -99,6 +99,8 @@ class Googlecal {
 
 		$event = $this->service->events->get($calendarId, $eventId);
 
+
+
 		$event->setSummary($summary);
 		$event->setDescription($description);
 		//$event->setLocation('Somewhere');
@@ -109,7 +111,7 @@ class Googlecal {
 		$end->setDateTime($endDate);
 		$event->setEnd($end);
 
-		return $this->service->events->update($calendarId, $event);
+		return $this->service->events->update($calendarId, $eventId, $event);
 
 	}
 
@@ -124,6 +126,14 @@ class Googlecal {
 		//delete event
 
 		return $event = $this->service->events->delete($calendarId, $eventId);
+
+	}
+
+	function calGetEvent($calendarId = 'primary', $eventId) {
+
+		//Get event
+
+		return $event = $this->service->events->get($calendarId, $eventId);
 
 	}
 
