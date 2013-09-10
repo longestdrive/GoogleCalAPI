@@ -82,20 +82,9 @@ class Googlecal {
 		$event->setEnd($end);
 
 		
-		try {
+		
 			return $this->service->events->insert($calendarId, $event);
-		}
-		catch (Google_ServiceException $e) {
-                            print "Error code :" . $e->getCode() . "\n";
-                            // Error message is formatted as "Error calling <REQUEST METHOD> <REQUEST URL>: (<CODE>) <MESSAGE OR REASON>".
-                            print "Error message: " . $e->getMessage() . "\n";
-                            return false;
-                            
-                        } catch (Google_Exception $e) {
-                            // Other error.
-                            print "An error occurred: (" . $e->getCode() . ") " . $e->getMessage() . "\n";
-                        return false;
-                        }
+		
 
 	}
 
