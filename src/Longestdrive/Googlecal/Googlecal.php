@@ -68,6 +68,37 @@ class Googlecal {
 
 	}
 
+	/**
+	 * [calFetchLimitEvents description]
+	 * @param  string  $calendarId [description]
+	 * @param  [type]  $start      [description]
+	 * @param  [type]  $end        [description]
+	 * @param  integer $limit      [description]
+	 * @return [type]              [description]
+	 */
+	public function calFetchLimitEvents($calendarId = 'primary', $start, $end=null, $limit=25) {
+
+		$optParams = array(
+			'orderBy'=>'startTime',
+			'singleEvents'=>true,
+			'maxResults'=>(int) $limit
+			);
+
+		if($minDate) {
+
+			$optParams['timeMin'] = $minDate;
+		}
+
+		if($maxDate) {
+
+			$optParams['timeMax'] = $maxDate;
+		}
+		$events = $this->service->events->listEvents($calendarId, $optParams);
+
+		return $events;
+
+	}
+
 	function calAddEvent($calendarId = 'primary', $startDate, $endDate, $summary, $description = null) {
 
 		$event = new \Google_Event;
