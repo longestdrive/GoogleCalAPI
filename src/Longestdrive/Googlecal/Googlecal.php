@@ -81,7 +81,7 @@ class Googlecal {
 		$optParams = array(
 			'orderBy'=>'startTime',
 			'singleEvents'=>true,
-			'maxResults'=>(int) $limit
+			'maxResults'=>$limit
 			);
 
 		if($minDate) {
@@ -89,7 +89,7 @@ class Googlecal {
 			$optParams['timeMin'] = $minDate;
 		}
 
-		if($maxDate) {
+		if(!is_null($maxDate)) {
 
 			$optParams['timeMax'] = $maxDate;
 		}
