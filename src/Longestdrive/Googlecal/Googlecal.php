@@ -76,7 +76,7 @@ class Googlecal {
 	 * @param  integer $limit      [description]
 	 * @return [type]              [description]
 	 */
-	public function calFetchLimitEvents($calendarId = 'primary', $start, $end=null, $limit=25) {
+	public function calFetchLimitEvents($calendarId = 'primary', $start, $end=null, $limit=5) {
 
 		$optParams = array(
 			'orderBy'=>'startTime',
