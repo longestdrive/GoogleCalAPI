@@ -76,7 +76,7 @@ class Googlecal {
 	 * @param  integer $limit      [description]
 	 * @return [type]              [description]
 	 */
-	public function calFetchLimitEvents($calendarId = 'primary', $start, $end=null, $limit=25) {
+	public function calFetchLimitEvents($calendarId = 'primary', $minDate, $maxDate=null, $limit=25) {
 
 		$optParams = array(
 			'orderBy'=>'startTime',
@@ -87,7 +87,7 @@ class Googlecal {
 		if($minDate) {
 
 			$optParams['timeMin'] = $minDate;
-		}
+		} 
 
 		if(!is_null($maxDate)) {
 
