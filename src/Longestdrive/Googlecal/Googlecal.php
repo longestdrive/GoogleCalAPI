@@ -8,7 +8,7 @@ class Googlecal {
 
 	
 
-	public function __construct(\Google_client $client) {
+	public function __construct(\Google_Client $client) {
 
 		//$client = new \Google_client;
 		$this->setClient($client);
