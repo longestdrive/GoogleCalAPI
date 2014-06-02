@@ -101,14 +101,14 @@ class Googlecal {
 
 	function calAddEvent($calendarId = 'primary', $startDate, $endDate, $summary, $description = null) {
 
-		$event = new \Event;
+		$event = new \Google_Service_Calendar_Events;
 		$event->setSummary($summary);
 		$event->setDescription($description);
 		//$event->setLocation('Somewhere');
-		$start = new \EventDateTime;
+		$start = new \Google_Service_Calendar_EventDateTime;
 		$start->setDateTime($startDate);
 		$event->setStart($start);
-		$end = new \EventDateTime;
+		$end = new \Google_Service_Calendar_EventDateTime;
 		$end->setDateTime($endDate);
 		$event->setEnd($end);
 
