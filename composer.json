@@ -9,8 +9,9 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        
-        "bitgandtter/google-api": "dev-master"
+        "illuminate/support": "4.0.x",
+        "google/apiclient": "dev-master"
+
         
     },
     "autoload": {

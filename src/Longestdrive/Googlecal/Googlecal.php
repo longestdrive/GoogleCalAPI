@@ -31,7 +31,7 @@ class Googlecal {
 
 	public function setService(\Google_Client $client) {
 
-		$this->service = new \Google_CalendarService($client);
+		$this->service = new \Google_Service_Calendar($client);
 
 		return $this;
 	}
@@ -76,7 +76,7 @@ class Googlecal {
 	 * @param  integer $limit      [description]
 	 * @return [type]              [description]
 	 */
-	public function calFetchLimitEvents($calendarId = 'primary', $minDate, $maxDate=null, $limit=25) {
+	public function calFetchLimitEvents($calendarId = 'primary', $start, $end=null, $limit=25) {
 
 		$optParams = array(
 			'orderBy'=>'startTime',
@@ -84,14 +84,14 @@ class Googlecal {
 			'maxResults'=>$limit
 			);
 
-		if($minDate) {
+		if($start) {
 
-			$optParams['timeMin'] = $minDate;
-		} 
+			$optParams['timeMin'] = $start;
+		}
 
-		if(!is_null($maxDate)) {
+		if(!is_null($end)) {
 
-			$optParams['timeMax'] = $maxDate;
+			$optParams['timeMax'] = $end;
 		}
 		$events = $this->service->events->listEvents($calendarId, $optParams);
 
