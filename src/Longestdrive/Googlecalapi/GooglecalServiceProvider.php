@@ -1,4 +1,4 @@
-<?php namespace Longestdrive\Googlecal;
+<?php namespace Longestdrive\Googlecalapi;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -18,9 +18,9 @@ class GooglecalServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('longestdrive/googlecal');
+		$this->package('longestdrive/googlecalapi');
 		$loader = \Illuminate\Foundation\AliasLoader::getInstance();
-  		$loader->alias('Googlecal', 'Longestdrive\Googlecal\Facades\Googlecal');
+  		$loader->alias('Googlecal', 'Longestdrive\Googlecalapi\Facades\Googlecal');
 	}
 
 	/**
@@ -30,16 +30,16 @@ class GooglecalServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['googlecal'] = $this->app->share(function($app) {
+		$this->app['googlecalapi'] = $this->app->share(function($app) {
 
-			if(!\File::exists($app['config']->get('googlecal::certificate_path')))
+			if(!\File::exists($app['config']->get('googlecalapi::certificate_path')))
 			{
-				throw new \Exception("Can't find the .p12 certificate in: " . $app['config']->get('googlecal::certificate_path'));
+				throw new \Exception("Can't find the .p12 certificate in: " . $app['config']->get('googlecalapi::certificate_path'));
 			}
 
 			$config = array(
-				'oauth2_client_id' => $app['config']->get('googlecal::client_id'),
-				'use_objects' => $app['config']->get('googlecal::use_objects'),
+				'oauth2_client_id' => $app['config']->get('googlecalapi::client_id'),
+				'use_objects' => $app['config']->get('googlecalapi::use_objects'),
 			);
 
 			
@@ -49,12 +49,12 @@ class GooglecalServiceProvider extends ServiceProvider {
 
 			$client->setAssertionCredentials(
 				new \Google_Auth_AssertionCredentials(
-					$app['config']->get('googlecal::service_email'),
+					$app['config']->get('googlecalapi::service_email'),
 					array(
 						'https://www.googleapis.com/auth/calendar',
 						'https://www.googleapis.com/auth/calendar.readonly'
 						),
-					file_get_contents($app['config']->get('googlecal::certificate_path'))
+					file_get_contents($app['config']->get('googlecalapi::certificate_path'))
 				)
 			);
 

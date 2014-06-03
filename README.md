@@ -1,4 +1,4 @@
-GoogleCalAPI for Laravel 4
+GoogleCalAPI for Laravel 4.1
 ============
 This API is work in progress - something I needed for a site I was working on. It's based on a similar api on analytics (thujogn/analytics). Documentation is currently poor.
 
