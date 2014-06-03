@@ -48,7 +48,7 @@ class GooglecalServiceProvider extends ServiceProvider {
 			$client->setAccessType('offline');
 
 			$client->setAssertionCredentials(
-				new \Google_AssertionCredentials(
+				new \Google_Auth_AssertionCredentials(
 					$app['config']->get('googlecal::service_email'),
 					array(
 						'https://www.googleapis.com/auth/calendar',
