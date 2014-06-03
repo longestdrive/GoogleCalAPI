@@ -8,7 +8,7 @@ class Googlecal {
 
 	
 
-	public function __construct(\Google_client $client) {
+	public function __construct(\Google_Client $client) {
 
 		//$client = new \Google_client;
 		$this->setClient($client);
@@ -31,7 +31,7 @@ class Googlecal {
 
 	public function setService(\Google_Client $client) {
 
-		$this->service = new \Google_CalendarService($client);
+		$this->service = new \Google_Service_Calendar($client);
 
 		return $this;
 	}
@@ -76,7 +76,7 @@ class Googlecal {
 	 * @param  integer $limit      [description]
 	 * @return [type]              [description]
 	 */
-	public function calFetchLimitEvents($calendarId = 'primary', $minDate, $maxDate=null, $limit=25) {
+	public function calFetchLimitEvents($calendarId = 'primary', $start, $end=null, $limit=25) {
 
 		$optParams = array(
 			'orderBy'=>'startTime',
@@ -84,14 +84,14 @@ class Googlecal {
 			'maxResults'=>$limit
 			);
 
-		if($minDate) {
+		if($start) {
 
-			$optParams['timeMin'] = $minDate;
-		} 
+			$optParams['timeMin'] = $start;
+		}
 
-		if(!is_null($maxDate)) {
+		if(!is_null($end)) {
 
-			$optParams['timeMax'] = $maxDate;
+			$optParams['timeMax'] = $end;
 		}
 		$events = $this->service->events->listEvents($calendarId, $optParams);
 
@@ -101,14 +101,14 @@ class Googlecal {
 
 	function calAddEvent($calendarId = 'primary', $startDate, $endDate, $summary, $description = null) {
 
-		$event = new \Google_Event;
+		$event = new \Google_Service_Calendar_Events;
 		$event->setSummary($summary);
 		$event->setDescription($description);
 		//$event->setLocation('Somewhere');
-		$start = new \Google_EventDateTime;
+		$start = new \Google_Service_Calendar_EventDateTime;
 		$start->setDateTime($startDate);
 		$event->setStart($start);
-		$end = new \Google_EventDateTime;
+		$end = new \Google_Service_Calendar_EventDateTime;
 		$end->setDateTime($endDate);
 		$event->setEnd($end);
 
@@ -138,10 +138,10 @@ class Googlecal {
 		$event->setSummary($summary);
 		$event->setDescription($description);
 		//$event->setLocation('Somewhere');
-		$start = new \Google_EventDateTime;
+		$start = new \EventDateTime;
 		$start->setDateTime($startDate);
 		$event->setStart($start);
-		$end = new \Google_EventDateTime;
+		$end = new \EventDateTime;
 		$end->setDateTime($endDate);
 		$event->setEnd($end);
 
