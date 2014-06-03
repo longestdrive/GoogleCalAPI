@@ -1,4 +1,4 @@
-<?php namespace Longestdrive\Googlecal\Facades;
+<?php namespace Longestdrive\Googlecalapi\Facades;
  
 use Illuminate\Support\Facades\Facade;
  
@@ -9,7 +9,7 @@ class Googlecal extends Facade {
    *
    * @return string
    */
-  protected static function getFacadeAccessor() { return 'googlecal'; }
+  protected static function getFacadeAccessor() { return 'googlecalapi'; }
 
   
  

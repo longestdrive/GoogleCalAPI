@@ -1,4 +1,4 @@
-<?php namespace Longestdrive\Googlecal;
+<?php namespace Longestdrive\Googlecalapi;
 
 class Googlecal {
 
@@ -101,7 +101,8 @@ class Googlecal {
 
 	function calAddEvent($calendarId = 'primary', $startDate, $endDate, $summary, $description = null) {
 
-		$event = new \Google_Service_Calendar_Events;
+		$event = new \Google_Service_Calendar_Event;
+//        dd($event);
 		$event->setSummary($summary);
 		$event->setDescription($description);
 		//$event->setLocation('Somewhere');
@@ -138,10 +139,10 @@ class Googlecal {
 		$event->setSummary($summary);
 		$event->setDescription($description);
 		//$event->setLocation('Somewhere');
-		$start = new \EventDateTime;
+		$start = new \Google_Service_Calendar_EventDateTime;
 		$start->setDateTime($startDate);
 		$event->setStart($start);
-		$end = new \EventDateTime;
+		$end = new \Google_Service_Calendar_EventDateTime;
 		$end->setDateTime($endDate);
 		$event->setEnd($end);
 
