@@ -6,6 +6,6 @@ It only has very basic features which i'll add to over time
 
 Feel free to fork etc
 
-once installed and config file published you'll need to rename thr config file googlecal (instead of googlecalapi
+Install using composer and then publish the config file. Update the config file with your google credentials
 
 Place your p12 certificate in the config folder and change the keys to your set up
