@@ -168,7 +168,13 @@ class Googlecal {
 
 		//Get event
 
-		return $event = $this->service->events->get($calendarId, $eventId);
+		try {
+			return $this->service->events->get($calendarId, $eventId);
+		} catch (Google_Exception $e) {
+			if($e->getCode() == 404) {
+				return  false;
+			}
+		}
 
 	}
 
