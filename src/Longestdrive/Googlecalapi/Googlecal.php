@@ -170,7 +170,7 @@ class Googlecal {
 
 		try {
 			return $this->service->events->get($calendarId, $eventId);
-		} catch (Google_Exception $e) {
+		} catch (Google_Service_Exception $e) {
 			if($e->getCode() == 404) {
 				return  false;
 			}
