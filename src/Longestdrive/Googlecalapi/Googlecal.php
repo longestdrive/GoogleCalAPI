@@ -1,5 +1,6 @@
 <?php namespace Longestdrive\Googlecalapi;
 
+
 class Googlecal {
 
 	protected $client;
@@ -164,16 +165,26 @@ class Googlecal {
 
 	}
 
+	/**
+	 * Fetches a google calendar event
+	 * @param string $calendarId
+	 * @param string $eventId
+	 * @return object Google calender event object or false if not found
+	 */
 	function calGetEvent($calendarId = 'primary', $eventId) {
 
 		//Get event
 
 		try {
-			return $this->service->events->get($calendarId, $eventId);
-		} catch (Google_Service_Exception $e) {
+
+			return  $this->service->events->get($calendarId, $eventId);
+
+
+		} catch (\Google_Service_Exception $e) {
 			if($e->getCode() == 404) {
-				return  false;
+				return false;
 			}
+
 		}
 
 	}
