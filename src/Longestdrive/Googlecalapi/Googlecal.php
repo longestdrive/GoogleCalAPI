@@ -136,18 +136,23 @@ class Googlecal {
 		$event = $this->service->events->get($calendarId, $eventId);
 
 
+		if ($event) {
+			$event->setSummary($summary);
+			$event->setDescription($description);
 
-		$event->setSummary($summary);
-		$event->setDescription($description);
-		//$event->setLocation('Somewhere');
-		$start = new \Google_Service_Calendar_EventDateTime;
-		$start->setDateTime($startDate);
-		$event->setStart($start);
-		$end = new \Google_Service_Calendar_EventDateTime;
-		$end->setDateTime($endDate);
-		$event->setEnd($end);
+			$start = new \Google_Service_Calendar_EventDateTime;
+			$start->setDateTime($startDate);
+			$event->setStart($start);
 
-		return $this->service->events->update($calendarId, $eventId, $event);
+			$end = new \Google_Service_Calendar_EventDateTime;
+			$end->setDateTime($endDate);
+			$event->setEnd($end);
+
+			return $this->service->events->update($calendarId, $eventId, $event);
+		} else {
+			//event not found
+			return false;
+		}
 
 	}
 
