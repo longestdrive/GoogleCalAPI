@@ -133,8 +133,7 @@ class Googlecal {
 	 */
 	function calUpdateEvent($calendarId = 'primary', $eventId, $startDate, $endDate, $summary, $description = null) {
 
-		$event = $this->service->events->get($calendarId, $eventId);
-
+		$event = $this->calGetEvent($calendarId, $eventId);
 
 		if ($event) {
 			$event->setSummary($summary);
