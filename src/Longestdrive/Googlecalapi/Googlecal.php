@@ -133,21 +133,25 @@ class Googlecal {
 	 */
 	function calUpdateEvent($calendarId = 'primary', $eventId, $startDate, $endDate, $summary, $description = null) {
 
-		$event = $this->service->events->get($calendarId, $eventId);
+		$event = $this->calGetEvent($calendarId, $eventId);
 
+		if ($event) {
+			$event->setSummary($summary);
+			$event->setDescription($description);
 
+			$start = new \Google_Service_Calendar_EventDateTime;
+			$start->setDateTime($startDate);
+			$event->setStart($start);
 
-		$event->setSummary($summary);
-		$event->setDescription($description);
-		//$event->setLocation('Somewhere');
-		$start = new \Google_Service_Calendar_EventDateTime;
-		$start->setDateTime($startDate);
-		$event->setStart($start);
-		$end = new \Google_Service_Calendar_EventDateTime;
-		$end->setDateTime($endDate);
-		$event->setEnd($end);
+			$end = new \Google_Service_Calendar_EventDateTime;
+			$end->setDateTime($endDate);
+			$event->setEnd($end);
 
-		return $this->service->events->update($calendarId, $eventId, $event);
+			return $this->service->events->update($calendarId, $eventId, $event);
+		} else {
+			//event not found
+			return false;
+		}
 
 	}
 
